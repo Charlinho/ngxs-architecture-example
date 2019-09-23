@@ -1,0 +1,27 @@
+<section>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users$ | async">
+        <td>{{ user.name }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>
+          <div class="row">
+            <div class="col-md-2">
+              <button class="btn-secondary p-2" (click)="onEditClick(user.id)">Edit</button>
+            </div>
+            <div class="col-md-3">
+              <button class="btn-secondary mt-auto p-2" (click)="onRemoveClick(user.id)">Remove</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

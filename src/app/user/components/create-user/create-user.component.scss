@@ -1,0 +1,10 @@
+
+:host {
+  button {
+    &:disabled {
+      background-color: gray;
+      border-color: gray;
+    }
+  }
+}
+
