@@ -2,6 +2,8 @@
 
 <p align="center">:warning: Work In Progress :warning:</p>
 
+This demo app is deployed at https://charlinho.github.io/ngxs-architecture-sample/demo
+
 ## Folder Structure
 
 ```

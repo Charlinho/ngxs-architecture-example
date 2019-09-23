@@ -122,8 +122,13 @@
               "devServerTarget": "ngxs-example:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "ngxs-example"
 }

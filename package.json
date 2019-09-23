@@ -22,6 +22,7 @@
     "@ngxs/devtools-plugin": "^3.5.1-dev.master-62c4526",
     "@ngxs/logger-plugin": "^3.5.1-dev.master-62c4526",
     "@ngxs/store": "^3.5.1-dev.master-62c4526",
+    "angular-cli-ghpages": "^0.6.0",
     "bootstrap": "^4.3.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
