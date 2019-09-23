@@ -20,6 +20,20 @@ export class UserService {
     return this.userSnapshot().find((user) => user.id === id);
   }
 
+  public update(user: User): User[] {
+    return this.userSnapshot().map((u) => {
+      if (u.id === user.id) {
+        return {
+          id: u.id,
+          name: user.name,
+          lastName: user.lastName
+        };
+      }
+
+      return u;
+    });
+  }
+
   public remove(id: number): User[] {
     return this.userSnapshot().filter((user) => user.id !== id);
   }

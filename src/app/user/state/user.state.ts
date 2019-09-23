@@ -1,7 +1,7 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 
 import { User } from '../user.interface';
-import { AddUser, RemoveUser, EditUser } from '../actions/user.action';
+import { AddUser, RemoveUser, EditUser, UpdateUser } from '../actions/user.action';
 import { UserService } from '../user.service';
 
 export class UserStateModel {
@@ -53,5 +53,10 @@ export class UserState {
   @Action(EditUser)
   onEditUser(ctx: StateContext<UserStateModel>, { id }: EditUser): void {
     ctx.patchState({user: this.userService.fetchById(id)});
+  }
+
+  @Action(UpdateUser)
+  onUpdateUser(ctx: StateContext<UserStateModel>, { payload }: UpdateUser): void {
+    ctx.patchState({users: this.userService.update(payload)});
   }
 }

@@ -1,11 +1,10 @@
+import { Store } from '@ngxs/store';
 import { Component, OnInit } from '@angular/core';
-import { Store, StateContext } from '@ngxs/store';
-import { take, tap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { AddUser, EditUser } from '../../actions/user.action';
-import { UserStateModel } from '../../state/user.state';
 import { User } from '../../user.interface';
+
+import { AddUser, UpdateUser } from '../../actions/user.action';
 
 @Component({
   selector: 'app-create-user',
@@ -28,18 +27,34 @@ export class CreateUserComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.addUser();
-  }
-
-  private addUser(): void {
     const user = this.formGroup.value;
 
-    this.store.dispatch(new AddUser({name: user.name, lastName: user.lastName}))
-      .subscribe(() => this.formGroup.reset());
+    if (user.id) {
+      this.updateUser(user);
+      return;
+    }
+
+    this.addUser(user);
+  }
+
+  private addUser(user: User): void {
+    this.store.dispatch(new AddUser({
+      name: user.name,
+      lastName: user.lastName
+    })).subscribe(this.resetForm);
+  }
+
+  private updateUser(user: User): void {
+    this.store.dispatch(new UpdateUser({
+      id: user.id,
+      name: user.name,
+      lastName: user.lastName
+    })).subscribe(this.resetForm);
   }
 
   private buildForm(): void {
     this.formGroup = this.fb.group({
+      id: [''],
       name: ['', Validators.required],
       lastName: ['', Validators.required]
     });
@@ -54,6 +69,12 @@ export class CreateUserComponent implements OnInit {
       return;
     }
 
-    this.formGroup.setValue({name: user.name, lastName: user.lastName});
+    this.formGroup.setValue({
+      id: user.id,
+      name: user.name,
+      lastName: user.lastName
+    });
   }
+
+  private resetForm = () => this.formGroup.reset();
 }
